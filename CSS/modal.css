@@ -153,20 +153,6 @@ main {
 
 /* Modal form */
 
-.button {
-  background: #fe142f;
-  margin-top: 0.5em;
-  padding: 1em;
-  color: #fff;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button:hover {
-  background: #3876ac;
-}
-
 .smFont {
   font-size: 16px;
 }
@@ -225,14 +211,19 @@ input {
   height: 48px;
 }
 
+fieldset.formData {
+  padding: 0px;
+  border: none;
+}
+
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.6em;
   color: #e54858;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -335,8 +326,8 @@ input[data-error]::after {
   transform: scale(0.7);
 }
 
-.close:before,
-.close:after {
+.close::before,
+.close::after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -364,6 +355,10 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
+}
+
+.btn-submit:hover {
+  background: #3876ac;
 }
 
 /* custom select styles */
