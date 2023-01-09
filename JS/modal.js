@@ -39,10 +39,10 @@ function setErrorMessages() {
   for (let i = 0; i <= 6; i++) {
     const errorMessages = ['Le champ "Prénom" doit contenir au minimum 2 caractères',
       'Le champ "Nom" doit contenir au minimum 2 caractères',
-      'Veuillez entrer une adresse email valide',
-      'Veuillez entrer une date de naissance valide',
-      'Veuillez entrer un nombre compris entre 0 et 99',
-      'Veuillez choisir un tournoi',
+      "Veuillez entrer une adresse email valide",
+      "Veuillez entrer une date de naissance valide",
+      "Veuillez entrer un nombre compris entre 0 et 99",
+      "Veuillez choisir un tournoi",
       "Merci d'accepter les conditions d'utilisation avant de poursuivre"]
 
     formData[i].setAttribute("data-error", errorMessages[i]);
