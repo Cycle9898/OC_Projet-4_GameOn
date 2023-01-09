@@ -5,7 +5,6 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const closeModalBtn = document.querySelector(".close");
 
 const formData = document.querySelectorAll(".formData");
-
 const firstNameInput = document.getElementById("first");
 const lastNameInput = document.getElementById("last");
 const emailInput = document.getElementById("email");
@@ -13,6 +12,7 @@ const birthDateInput = document.getElementById("birthdate");
 const tournamentQuantityInput = document.getElementById("quantity");
 const tournamentCheckBoxes = document.querySelectorAll('input[name="location"]');
 const termsOfUseCheckBox = document.getElementById("checkbox1");
+const allCheckBoxes = document.querySelectorAll("span.checkbox-icon");
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -33,7 +33,7 @@ function editNav() {
 
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// Function to set all "data-error" attribute + no visibility
+// Function to set all error messages with "data-error" attribute and hide them
 
 function setErrorMessages() {
   for (let i = 0; i <= 6; i++) {
@@ -50,9 +50,24 @@ function setErrorMessages() {
   }
 }
 
-// Launch modal form and call setErrorMessages function
+// Function to reset modal default style
+
+function resetModal() {
+  modalBg.removeAttribute("style");
+  for (let data of formData) {
+    data.removeAttribute("style");
+  }
+  for (let checkbox of allCheckBoxes) {
+    checkbox.classList.remove("remove-transition");
+  }
+  document.querySelector("input.btn-submit").removeAttribute("style");
+  document.querySelector(".valid-form").removeAttribute("style");
+}
+
+// Launch clear modal form with loaded error messages
 
 function launchModal() {
+  resetModal();
   modalBg.style.display = "block";
   setErrorMessages();
 }
@@ -65,12 +80,11 @@ function clearForm(id) {
   document.getElementById(id).reset();
 }
 
-// Function that call clearForm() and close modal with an animation
+// Function to clear form and close modal with an animation
 
 function closeModal() {
   clearForm("modal-form");
   modalBg.style.animation = "modalopen var(--modal-duration) reverse";
-  setTimeout(() => { modalBg.style.animation = "" }, 800);
   setTimeout(() => { modalBg.style.display = "none" }, 800);
 }
 
@@ -145,11 +159,28 @@ function checkTermsOfUseSelection() {
   }
 }
 
-// Use previous functions and check the form
+// Function to display confirmation message
 
-function checkForm(e) {
-  e.preventDefault();
+function displayConfirmationMessage() {
+  //remove checkbox transitions
+  for (let checkbox of allCheckBoxes) {
+    checkbox.classList.add("remove-transition");
+  }
+  //hide all form element
+  for (let data of formData) {
+    data.style.visibility = "hidden";
+  }
+  document.querySelector("input.btn-submit").style.display = "none";
+  //display confirmation message element
+  document.querySelector(".valid-form").style.display = "block";
+}
 
+// Function to check and valid the form
+
+function checkForm(event) {
+  event.preventDefault();
+
+  //use previous functions to check the form
   checkFirstName();
   checkLastName();
   checkEmail();
@@ -163,10 +194,10 @@ function checkForm(e) {
   for (let data of formData) {
     allDataErrorVisibleAttribute.push(data.getAttribute("data-error-visible"));
   }
-  //test if all array elements are "false" and validate form
+  //test if all array elements are "false" to validate form
   if (allDataErrorVisibleAttribute.every((attributeValue) => attributeValue === "false")) {
-    console.log("formulaire valide");
-    //validate form here
+    //Send data to the server here
+    displayConfirmationMessage();
   }
 }
 
@@ -189,7 +220,3 @@ birthDateInput.addEventListener("input", checkBirthDate);
 tournamentQuantityInput.addEventListener("input", checkTournamentQuantity);
 formData[5].addEventListener("input", checkTournamentSelection);
 termsOfUseCheckBox.addEventListener("input", checkTermsOfUseSelection);
-
-// Check form event
-
-document.querySelector(".btn-submit").addEventListener("click", checkForm);

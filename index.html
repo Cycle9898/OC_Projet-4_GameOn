@@ -57,7 +57,7 @@
       <div class="content">
         <span class="close"></span>
         <div class="modal-body">
-          <form id="modal-form" name="reserve" action="index.html" method="get" onsubmit="return validate();">
+          <form id="modal-form" name="reserve" action="index.html" method="get" onsubmit="checkForm(event)">
             <div class="formData">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2"><br>
@@ -118,7 +118,7 @@
             </fieldset>
 
             <div class="formData">
-              <input class="checkbox-input" type="checkbox" id="checkbox1" required>
+              <input class="checkbox-input" type="checkbox" id="checkbox1">
               <label class="checkbox2-label" for="checkbox1">
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepté les conditions d'utilisation.
@@ -133,6 +133,11 @@
             </div>
             <input class="btn-submit button" type="submit" value="C'est parti">
           </form>
+
+          <div class="valid-form">
+            <p>Merci pour votre inscription !</p>
+            <button class="btn-submit button" onclick="closeModal();">Fermer</button>
+          </div>
         </div>
       </div>
     </div>
