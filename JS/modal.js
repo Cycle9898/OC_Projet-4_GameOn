@@ -50,10 +50,21 @@ function setErrorMessages() {
   }
 }
 
+// Launch modal form with pre-loaded error messages
+
+function launchModal() {
+  modalBg.style.display = "block";
+  setErrorMessages();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 // Function to reset modal default style
 
 function resetModal() {
-  modalBg.removeAttribute("style");
+  document.getElementById("modal-form").reset(); //clear form inputs
+  modalBg.removeAttribute("style"); //remove closure animation
+  modalBg.style.display = "none";
   for (let data of formData) {
     data.removeAttribute("style");
   }
@@ -64,28 +75,11 @@ function resetModal() {
   document.querySelector(".valid-form").removeAttribute("style");
 }
 
-// Launch clear modal form with loaded error messages
-
-function launchModal() {
-  resetModal();
-  modalBg.style.display = "block";
-  setErrorMessages();
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-// Function to clear form fields
-
-function clearForm(id) {
-  document.getElementById(id).reset();
-}
-
-// Function to clear form and close modal with an animation
+// Function to close modal with an animation and reset form
 
 function closeModal() {
-  clearForm("modal-form");
-  modalBg.style.animation = "modalopen var(--modal-duration) reverse";
-  setTimeout(() => { modalBg.style.display = "none" }, 800);
+  modalBg.style.animation = "modalopen 800ms reverse";
+  setTimeout(resetModal, 800);
 }
 
 // Close modal event
@@ -196,7 +190,7 @@ function checkForm(event) {
   }
   //test if all array elements are "false" to validate form
   if (allDataErrorVisibleAttribute.every((attributeValue) => attributeValue === "false")) {
-    //Send data to the server here
+    //Send data to the server here and then display confirmation message
     displayConfirmationMessage();
   }
 }
