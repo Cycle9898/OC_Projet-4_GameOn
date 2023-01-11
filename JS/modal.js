@@ -16,7 +16,7 @@ const allCheckBoxes = document.querySelectorAll("span.checkbox-icon");
 
 ///////////////////////////////////////////////////////////////////////////////
 
-// Function to change class name (restyle) on burger menu (mobile)
+// Function to toggle items display on burger menu (mobile)
 
 function editNav() {
   var x = document.getElementById("myTopnav");
@@ -43,7 +43,7 @@ function setErrorMessages() {
       "Veuillez entrer une date de naissance valide",
       "Veuillez entrer un nombre compris entre 0 et 99",
       "Veuillez choisir un tournoi",
-      "Merci d'accepter les conditions d'utilisation avant de poursuivre"]
+      "Merci d'accepter les conditions d'utilisation avant de poursuivre"];
 
     formData[i].setAttribute("data-error", errorMessages[i]);
     formData[i].setAttribute("data-error-visible", "false");
@@ -111,7 +111,7 @@ function checkEmail() {
 // Function to check validity of "Date de naissance" input
 
 function checkBirthDate() {
-  let today = new Date;
+  let today = new Date();
   let minAgeParticipation = 86400000; //Minimum age to participate: 1 day in ms
   if (!isNaN(Date.parse(birthDateInput.value)) && Date.parse(birthDateInput.value) < (Date.parse(today) - minAgeParticipation)) {
     birthDateInput.parentNode.setAttribute("data-error-visible", "false");
