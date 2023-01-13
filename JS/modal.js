@@ -91,17 +91,18 @@ closeModalBtn.addEventListener("click", closeModal);
 // Function to check validity of "Nom" or "Prénom" input
 
 function checkName(field) {
-  if (field.value.length < 2) {
-    field.parentNode.setAttribute("data-error-visible", "true");
-  } else {
+  if (field.value.length >= 2) {
     field.parentNode.setAttribute("data-error-visible", "false");
+  } else {
+    field.parentNode.setAttribute("data-error-visible", "true");
   }
 }
 
 // Function to check validity of "E-mail" input
 
 function checkEmail() {
-  if (emailInput.value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/)) {
+  let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/; //RegExp of valid email
+  if (emailPattern.test(emailInput.value)) {
     emailInput.parentNode.setAttribute("data-error-visible", "false");
   } else {
     emailInput.parentNode.setAttribute("data-error-visible", "true");
