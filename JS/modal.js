@@ -101,7 +101,7 @@ function checkName(field) {
 // Function to check validity of "E-mail" input
 
 function checkEmail() {
-  let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/; //RegExp of valid email
+  const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/; //RegExp of valid email
   if (emailPattern.test(emailInput.value)) {
     emailInput.parentNode.setAttribute("data-error-visible", "false");
   } else {
@@ -112,9 +112,9 @@ function checkEmail() {
 // Function to check validity of "Date de naissance" input
 
 function checkBirthDate() {
-  let today = new Date();
-  let minAgeParticipation = 86400000; //Minimum age to participate: 1 day in ms
-  if (!isNaN(Date.parse(birthDateInput.value)) && Date.parse(birthDateInput.value) < (Date.parse(today) - minAgeParticipation)) {
+  const todayInMs = Date.now();
+  const minAgeParticipation = 86400000; //Minimum age to participate: 1 day in ms
+  if (!isNaN(Date.parse(birthDateInput.value)) && Date.parse(birthDateInput.value) < (todayInMs - minAgeParticipation)) {
     birthDateInput.parentNode.setAttribute("data-error-visible", "false");
   } else {
     birthDateInput.parentNode.setAttribute("data-error-visible", "true");
