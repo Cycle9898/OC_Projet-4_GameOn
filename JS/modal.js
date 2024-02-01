@@ -89,9 +89,19 @@ function closeModal() {
 	setTimeout(resetModal, 800);
 }
 
+// Function to close modal when a click is done on its background
+
+function autoCloseModal(event) {
+	if (event.target == modalBg) {
+		closeModal();
+	}
+}
+
 // Close modal event
 
 closeModalBtn.addEventListener("click", closeModal);
+
+modalBg.addEventListener("click", event => autoCloseModal(event));
 
 ///////////////////////////////////////////////////////////////////////////////
 
