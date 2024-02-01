@@ -208,8 +208,8 @@ function checkForm(event) {
 	event.preventDefault();
 
 	//use previous functions to check the form
-	checkFirstName();
-	checkLastName();
+	checkName(firstNameInput);
+	checkName(lastNameInput);
 	checkEmail();
 	checkBirthDate();
 	checkTournamentQuantity();
@@ -234,20 +234,10 @@ function checkForm(event) {
 	}
 }
 
-// Function wrappers for event listeners of "Prénom" and "Nom" fields
-
-function checkFirstName() {
-	checkName(firstNameInput);
-}
-
-function checkLastName() {
-	checkName(lastNameInput);
-}
-
 // Event listener on all inputs for dynamic checks
 
-firstNameInput.addEventListener("input", checkFirstName);
-lastNameInput.addEventListener("input", checkLastName);
+firstNameInput.addEventListener("input", () => checkName(firstNameInput));
+lastNameInput.addEventListener("input", () => checkName(lastNameInput));
 emailInput.addEventListener("input", checkEmail);
 birthDateInput.addEventListener("input", checkBirthDate);
 tournamentQuantityInput.addEventListener("input", checkTournamentQuantity);
