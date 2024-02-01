@@ -537,7 +537,7 @@ footer {
 		display: none;
 	}
 
-	.topnav a:nth-last-child(1) {
+	.topnav a:nth-last-child() {
 		background-color: transparent;
 		color: #ff0000;
 		border-radius: initial;
@@ -569,8 +569,14 @@ footer {
 		position: absolute;
 		right: 0;
 		top: 50px;
-		background-color: #fff;
+		background-color: white;
 		z-index: 3;
+	}
+
+	.main-navbar.responsive {
+		border: solid 2px #ff0000;
+		border-radius: 15px;
+		padding: 20px;
 	}
 
 	/* Landing page */

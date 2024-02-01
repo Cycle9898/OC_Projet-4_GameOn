@@ -21,11 +21,14 @@ const allCheckBoxes = document.querySelectorAll("span.checkbox-icon");
 // Function to toggle items display on burger menu (mobile)
 
 function editNav() {
-	const x = document.getElementById("myTopnav");
-	if (x.className === "topnav") {
-		x.className += " responsive";
+	const myTopNav = document.getElementById("myTopnav");
+	const mainNav = document.getElementById("mainNav");
+	if (myTopNav.className === "topnav") {
+		myTopNav.className += " responsive";
+		mainNav.className += " responsive";
 	} else {
-		x.className = "topnav";
+		myTopNav.className = "topnav";
+		mainNav.className = "main-navbar";
 	}
 }
 
