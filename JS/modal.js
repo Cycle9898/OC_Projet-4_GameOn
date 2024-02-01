@@ -1,5 +1,6 @@
 // DOM Elements
 
+const body = document.querySelector("body");
 const modalBg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const closeModalBtn = document.querySelector(".close");
@@ -60,6 +61,7 @@ function setErrorMessages() {
 // Launch modal form with pre-loaded error messages
 
 function launchModal() {
+	body.classList.add("stop-scrolling");
 	modalBg.style.display = "block";
 	setErrorMessages();
 }
@@ -86,6 +88,7 @@ function resetModal() {
 
 function closeModal() {
 	modalBg.style.animation = "modalopen 800ms reverse";
+	body.classList.remove("stop-scrolling");
 	setTimeout(resetModal, 800);
 }
 
